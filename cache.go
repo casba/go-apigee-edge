@@ -17,7 +17,7 @@ type CacheServiceOp struct {
 	client *EdgeClient
 }
 
-var apiEndpoint = "/caches"
+var apiEndpoint = "caches"
 var _ CacheService = &CacheServiceOp{}
 
 type Cache struct {
