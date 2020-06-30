@@ -52,7 +52,7 @@ type EdgeClient struct {
 	CompanyApps   CompanyAppService
 	DeveloperApps DeveloperAppService
 	SharedFlows   SharedFlowService
-
+	CacheService  CacheService
 	// Account           AccountService
 	// Actions           ActionsService
 	// Domains           DomainsService
@@ -201,6 +201,7 @@ func NewEdgeClient(o *EdgeClientOptions) (*EdgeClient, error) {
 	c.CompanyApps = &CompanyAppServiceOp{client: c}
 	c.DeveloperApps = &DeveloperAppServiceOp{client: c}
 	c.SharedFlows = &SharedFlowServiceOp{client: c}
+	c.CacheService = &CacheServiceOp{client: c}
 
 	var e error = nil
 	if o.Auth == nil {
