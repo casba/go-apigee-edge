@@ -53,7 +53,6 @@ func (s *CacheServiceOp) Update(cache Cache, env string) (*Cache, *Response, err
 }
 
 func (s *CacheServiceOp) Delete(name, env string) (*Response, error) {
-
 	path := path.Join("environments", env, apiEndpoint, name)
 
 	req, e := s.client.NewRequest("DELETE", path, nil, "")
@@ -70,13 +69,22 @@ func (s *CacheServiceOp) Delete(name, env string) (*Response, error) {
 
 }
 
+type CacheOptions struct {
+	Name string `url:"name"`
+}
+
 func postOrPutCache(cache Cache, env, opType string, s *CacheServiceOp) (*Cache, *Response, error) {
+	var err error
 	uripath := ""
 
 	if opType == "PUT" {
 		uripath = path.Join("environments", env, apiEndpoint, cache.Name)
 	} else {
-		uripath = path.Join("environments", env, apiEndpoint)
+		opt := CacheOptions{Name: cache.Name}
+		uripath, err = addOptions(path.Join("environments", env, apiEndpoint), opt)
+		if err != nil {
+			return nil, nil, err
+		}
 	}
 
 	req, e := s.client.NewRequest(opType, uripath, cache, "")

@@ -53,20 +53,6 @@ type EdgeClient struct {
 	DeveloperApps DeveloperAppService
 	SharedFlows   SharedFlowService
 	Cache         CacheService
-	// Account           AccountService
-	// Actions           ActionsService
-	// Domains           DomainsService
-	// DropletActions    DropletActionsService
-	// Images            ImagesService
-	// ImageActions      ImageActionsService
-	// Keys              KeysService
-	// Regions           RegionsService
-	// Sizes             SizesService
-	// FloatingIPs       FloatingIPsService
-	// FloatingIPActions FloatingIPActionsService
-	// Storage           StorageService
-	// StorageActions    StorageActionsService
-	// Tags              TagsService
 
 	// Optional function called after every successful request made to the DO APIs
 	onRequestCompleted RequestCompletionCallback
